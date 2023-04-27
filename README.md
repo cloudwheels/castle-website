@@ -1,3 +1,3 @@
-This repository contains the files which when published form the Dash Incubator App.
+This repository contains the source for the CryptoCastle.tech website.
 
-You can find out more by visiting the app at https://dashincubator.app 
+You can find out more by visiting the site at https://cryptocastle.tech 
