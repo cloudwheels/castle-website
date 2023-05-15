@@ -48,8 +48,11 @@ async function setDashRate(){
     }
 }
 $(document).ready(async function () {
+    //Don't bother getting a fiat price for now....
+    /*
     await setDashRate();
     $('#dash-price').text(DASHUSD);
     $('#dash-updated').text(DASH_UPDATED);
+    */
 
 });
