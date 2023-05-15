@@ -184,9 +184,12 @@ function transformTrelloData(data, options = {}) {
                 //We don't need Concept Tasks
                 if (checklistName != 'Production Tasks' &&
                     checklistName != 'Specification Tasks' &&
-                    checklistName != 'QA Tasks') {
+                    checklistName != 'QA Tasks' &&
+                    // Addtional task types for JMES
+                    checklistName != 'Stakeholder Tasks' &&
+                    checklistName != 'Design Tasks' 
+                    ) {
                     ignoreBadTaskListName = true;
-
                 }
                 checklist.checkItems.map(checklistItem => {
 
@@ -227,7 +230,7 @@ function transformTrelloData(data, options = {}) {
 
                     }
                     else {
-                        rewardDash = rewardDash.toFixed(2)
+                        rewardDash = rewardDash //.toFixed(2) //remove dp
                     }
                     let rewardUSD = null;
                     if (rewardDash !== null) {
@@ -256,6 +259,8 @@ function transformTrelloData(data, options = {}) {
                     let taskAssignedId = checklistItem.idMember;
                     let taskAssignedUsername = null;
                     if (taskAssignedId != null) {
+                        console.log(`card: ${card.name}, taskAssignedId: ${taskAssignedId}`)
+                        console.dir(data.members)
                         taskAssignedUsername = data.members.filter(name => name.id == taskAssignedId)[0].username || null;
                         if (!options.showAssignedTasks) {
                             taskWarnings.push({ warnLevel: 3, warningText: `Has an assigned member - Not shown`, cardName: card.name, cardUrl: card.shortUrl, taskDesc: checklistItemName });
@@ -328,9 +333,12 @@ function transformTrelloData(data, options = {}) {
 
         lists.project = tasks.filter(item => item.taskType == 'PRODUCTION' && item.cardWorkType == 'Project');
         lists.spec = tasks.filter(item => item.taskType == 'SPECIFICATION');
+        lists.qa = tasks.filter(item => item.taskType == 'DESIGN '); // Add a list for deisgn tasks
+        // cardWorkType custom field has been removed so this won't currently work!!!
         lists.service = tasks.filter(item => item.taskType == 'PRODUCTION' && item.cardWorkType == 'Service');
         lists.job = tasks.filter(item => item.taskType == 'PRODUCTION' && item.cardWorkType == 'Job');
         lists.qa = tasks.filter(item => item.taskType == 'QA');
+        
 
 
         //console.log('Lists:');
@@ -367,6 +375,8 @@ function processCustomFields(arrCustomFields) {
     let customFields = {};
 
     //get cardWorkType
+    //ignore and set customFields.workType =  'Project' (custom field isn't used)
+    /*
     arrCustomFields.filter(field => field.idCustomField == TRELLO_CUSTOM_ID_WORKTYPE)
         .map(value => {
             switch (value.idValue) {
@@ -379,9 +389,11 @@ function processCustomFields(arrCustomFields) {
                 case TRELLO_CUSTOM_VALUE_WORKTYPE_JOB:
                     customFields.workType = 'Job'
                     break;
-                default: customFields.workType = null;
+                default:  null;
             }
         });
+    */
+        customFields.workType =  'Project';
 
     //get Skills
     filterSkills = arrCustomFields.filter(field => field.idCustomField == TRELLO_CUSTOM_ID_SKILLS)
@@ -529,15 +541,16 @@ function splitTaskDescription(strTaskDescription) {
 
         let lastBracketContent = strTaskDescription.substr(lastLBracket + 1, lastRBracket - lastLBracket - 1).trim().toUpperCase();
         //console.log('lastBracketContent',lastBracketContent);
-        let posOfTextDash = lastBracketContent.indexOf("DASH");
+        let posOfTextDash = lastBracketContent.indexOf("JMES"); //Look for JMES rewards not DASH!
         //console.log('posOfTextDash',posOfTextDash);
-        let amountStr = lastBracketContent.substr(0, posOfTextDash).trim()
-        //console.log('amountStr',amountStr);
+        let amountStr = lastBracketContent.substr(0, posOfTextDash).trim().replace(",",""); //replace commas used in current data
+        console.log('amountStr',amountStr);
         // TODO: $.isNumeric is DEPRECATED!
         // replace with pure JS implementation
         let amt = null
         if ($.isNumeric(amountStr)) {
-            amt = parseFloat(amountStr);
+            //change to parseInt
+            amt = parseInt(amountStr);
         }
         return { taskNumber: taskNumber, taskDesc: taskDesc, taskRewardDash: amt }
     }
@@ -576,8 +589,8 @@ function listToTable(tableId, projectHeaderName, data) {
             //let link = `./bounty-detail.html?bountytaskid=${item.taskId}&bountytrellourl=${item.cardUrl}&bountyname=${item.checklistItemName}&bountycardname=${item.cardName}&bountycarddesc=${item.cardDesc}&bountyrewardusd=${item.rewardUSD}&bountyrewarddash=${item.rewardDash}&bountyadmin=${item.admin}&bountycardWorkType=${item.cardWorkType}`;
             let link = `./bounty-detail.html?taskid=${item.taskId}`;
 
-
-            strHTML += `<tr><td><div>${item.cardName}</div></td><td><div>${item.taskNumber}</div></td><td><div>${item.taskDesc}</div></td><td><div>${item.cardSkills || ''}</div></td><td><div><a href="${link}" class="btn">${item.rewardDash.toString().padStart(5, '%').replace(/%/g, '&nbsp;')} DASH ${(`($${item.rewardUSD.toString()})`).padEnd(7, '%').replace(/%/g, '&nbsp;')}</a></div></td></tr>`;
+            //remove reward amount decimal places and fiat conversion
+            strHTML += `<tr><td><div>${item.cardName}</div></td><td><div>${item.taskNumber}</div></td><td><div>${item.taskDesc}</div></td><td><div>${item.cardSkills || ''}</div></td><td><div><a href="${link}" class="btn">${item.rewardDash.toString()} JMES</a></div></td></tr>`;
         });
     }
     else{

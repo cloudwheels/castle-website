@@ -17,10 +17,7 @@
   <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
   <meta property="og:image" content="https://dashincubator.app/assets/image/incubator-logo.jpg">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
-  <script> {% include var.js %}</script>
   <script> {% include dash-price.js %}</script>
-  <script> {% include app.js %}</script>
 
   <script>window.twttr = (function (d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0],
@@ -47,15 +44,14 @@
   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v8.0"
     nonce="3TY5c3bh"></script>
 
-   
-{% include page_header.html %} 
+  {% include page_header.html %}
   <div class="container">
     <section id="main_content">
-      {{ content }}
+      {% include anchor_headings.html html=content anchorBody="#" %}
     </section>
   </div>
-
-  {% include page_footer.html %}
+  <!-- don't include footer on rules microsite-->
+  <!-- {% include page_footer.html %}-->
 </body>
 
 </html>

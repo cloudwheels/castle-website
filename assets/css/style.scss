@@ -2,8 +2,31 @@
 ---
 @import "{{ site.theme }}";
 
+.testtheme {
+   color: {{ site.data.app.theme.testcolor }};
+}
+
+body, html {
+    font-family: Degular,Helvetica Neue,sans-serif;
+    color: white;
+}
+
+th {
+    border-bottom-color: #704ff7;
+}
+
+h1, h2 {
+    color: #704ff7;
+}
+
 header {
   display: none;
+}
+
+a {
+    //color: white;
+    color:#a1f0c4;
+    //text-decoration:none;
 }
 
 .footer {
@@ -22,13 +45,25 @@ text-align: center;
     
 }
 
+.mint-header-center {
+    text-align: center;
+    color: #a1f0c4;
+    
+}
+
+
 #concept-info {
     border-width: 2px;
-    border-color: #b5e853;
+    border-color: #a1f0c4;
     border-style:solid;
     margin:10px;
     margin-bottom: 20px;
     padding:10px;
+    
+}
+
+#concept-info h3 {
+    color:#a1f0c4;
 }
 
 .fb_iframe_widget span {
@@ -37,7 +72,7 @@ text-align: center;
 
 #trello-instructions {
     border-width: 2px;
-    border-color: #b5e853;
+    border-color: #a1f0c4;
     border-style:solid;
     margin:10px;
     padding:10px;
@@ -60,14 +95,14 @@ text-align: center;
 }
 
 .btn {
-    background: #b5e853;
+    background: #a1f0c4;
     color: black;
     text-shadow: none;
     white-space: nowrap;
 }
 
 .btn:hover {
-    background: #b5e853;
+    background: #a1f0c4;
     color: black;
     text-shadow: none;
     white-space: nowrap;
@@ -111,11 +146,13 @@ text-align: center;
 }
 
 .nav-container a {
-    color: white;
+    //color: white;
+    color:#a1f0c4;
+    text-decoration:none;
 }
 
 .top-nav {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
     position: absolute;
     width: fit-content;
@@ -179,6 +216,10 @@ text-align: center;
     margin-top: 70px;
 }
 
+.nav-icon svg {
+    fill: #a1f0c4!important;
+}
+
 .output-container {
     margin:30px;
     padding: 10px;
@@ -189,6 +230,55 @@ text-align: center;
     position: relative;
     top:-10px;
 }
+
+* {
+    box-sizing: border-box;
+  }
+  
+  .menu-flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 30px;
+    text-align: center;
+    gap: 10px;
+    justify-content: space-between;
+    
+    
+   
+  }
+  
+  .menu-flex-container > div {
+    justify-content: space-around;
+  }
+  
+  
+  .menu-flex-item-left {
+    flex: 40%;
+    border-width: 2px;
+    border-color: #a1f0c4;
+    border-style:solid;
+    margin-bottom: 20px;
+    padding:10px;
+
+  }
+  
+  .menu-flex-item-right {
+    flex: 40%;
+    border-width: 2px;
+    border-color: #a1f0c4;
+    border-style:solid;
+    margin-bottom: 20px;
+    padding:10px;
+  }
+
+
+  
+  /* Responsive layout - makes a one column-layout instead of a two-column layout */
+  @media (max-width: 800px) {
+    #menu-flex-item-right, #menu-flex-item-left {
+      flex: 100%;
+    }
+  }
 
 
 
