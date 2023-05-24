@@ -2,10 +2,10 @@
 # Api key for the trello api user
 key : 910955be8cf85efce2eb715fea302f2b
 # Id of the Trello board
-board: FPJzDcok
+board: TIDTkrYS #FPJzDcok
 # Ids of the Trello Concepts & Archive Lists (to be excluded)
 # retrieve list ids using: https://api.trello.com/1/board/<boardId>/lists?key=<key>
-concepts: 5e5ecb480f896043ce549884
+concepts: 644132de9936cb3fb4315cb8 #ignore the "Welcome" List 
 archive: 5ee759f790292d5ff2b54e64 
 # Ids of the Trello Custom Field Ids & Values
 # retreive list ids using: https://api.trello.com/1/board/<boardId>/customFields?key=<key>

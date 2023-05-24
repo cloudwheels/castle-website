@@ -569,6 +569,7 @@ function listToTable(tableId, projectHeaderName, data) {
 
     strHTML += `
     <table class="bounty-table" id="tbl_${tableId}">
+                    <!--
                     <thead>
                         <tr>
                             <th>${projectHeaderName}</th>
@@ -582,6 +583,7 @@ function listToTable(tableId, projectHeaderName, data) {
                             <th>Reward*</th>
                         </tr>
                     </thead>
+                    -->
                     <tbody>
     `
     if(data.length>0){
@@ -590,7 +592,10 @@ function listToTable(tableId, projectHeaderName, data) {
             let link = `./bounty-detail.html?taskid=${item.taskId}`;
 
             //remove reward amount decimal places and fiat conversion
-            strHTML += `<tr><td><div>${item.cardName}</div></td><td><div>${item.taskNumber}</div></td><td><div>${item.taskDesc}</div></td><td><div>${item.cardSkills || ''}</div></td><td><div><a href="${link}" class="btn">${item.rewardDash.toString()} JMES</a></div></td></tr>`;
+            //strHTML += `<tr><td><div>${item.cardName}</div></td><td><div>${item.taskNumber}</div></td><td><div>${item.taskDesc}</div></td><td><div>${item.cardSkills || ''}</div></td><td><div><a href="${link}" class="btn">${item.rewardDash.toString()} JMES</a></div></td></tr>`;
+            
+            //format to single row
+            strHTML += `<tr><td><div>${item.cardName}: ${item.taskDesc}</td></tr><tr><td align="centre"<div><a href="${link}" class="btn">${item.rewardDash.toString()} JMES</a></div></td></tr>`;
         });
     }
     else{

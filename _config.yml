@@ -3,19 +3,19 @@ theme: jekyll-theme-hacker
 future: true
 title: JMES Crypto Castle
 url: "https://cryptocastle.tech" # the base hostname & protocol for your site
-repoBaseUrl: https://github.com/crypto-castle/incubator-website 
+repoBaseUrl: https://github.com/crypto-castle/castle-website 
 plugins:
   - jekyll-sitemap
-tagline: Get rewards for helping to build Dash
+tagline: Get rewards for helping to build JMES
 description: Claim bounties for new ideas, specifying and working on tasks, and carring out QA on JMES blockchain software.
-logo: /assets/image/incubator-logo.jpg
+logo: /assets/image/logo.svg
 twitter:
-  username: dashincubator
+  username: cryptocastle
   card: summary
 social:
-  name: Dash Incubator
+  name: JMES Crypto Casle
   links:
-    - https://twitter.com/dashincubator
+    - https://twitter.com/cryptocastle
     - https://github.com/cryptocastle
-    - https://chat.dashdevs.org
+    - https://chat.cryptocastle.tech
 google_analytics: G-PZE9FSBKDS

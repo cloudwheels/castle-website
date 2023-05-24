@@ -99,7 +99,7 @@ layout: default-app
                 $('#bounty-info-admin').append(task.cardAdmin);
                 $('#bounty-info-cardWorkType').append(task.cardWorkType);
                 $('#bounty-info-taskType').append(taskTypeTitle);
-                $('#bounty-info-reward').append(task.rewardDash + ' DASH ($' + task.rewardUSD + ')');
+                $('#bounty-info-reward').append(task.rewardDash + ' JMES');
                 let cardActionVerb = (task.cardWorkType.toUpperCase()=="JOB" ? "claim" : "reserve");
                 
                 if(task.taskType=='PRODUCTION'){taskAdditonalWorkType= ` for this ${task.cardWorkType}`}
@@ -113,7 +113,7 @@ layout: default-app
                 let encodedLink = encodeURIComponent(window.location.href);
                 console.log('encoded link', encodedLink);
 
-                let twitterText = 'Claim bounty rewards for helping to build Dash blockchain software - check out this task:';
+                let twitterText = 'Claim bounty rewards for helping to build JMES blockchain software - check out this task:';
 
                 let encodedText = encodeURIComponent(twitterText);
                 encodedText = twitterText.replace("%20", "%2520");
@@ -140,6 +140,7 @@ layout: default-app
 </script>
 
 <h1 class="white-header-center">BOUNTY TASK DETAILS</h1>
+<div class="bounty-detail-trello"><a href="https://trello.com/b/TIDTkrYS/crypto-castle-bounties" target="_blank"><img src="{{site.baseurl}}/assets/image/trello.svg" alt="Find rewards on Trello"  class="nav-icon"> VIEW ALL BOUNTIES ON TRELLO</a></div>
 <div id='page-share' class="page_share">
     <div class="fb-share-button" data-layout="button" data-size="small"><a target="_blank"
             href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"

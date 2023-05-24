@@ -2,7 +2,7 @@
 # Api key for the trello api user
 key : 910955be8cf85efce2eb715fea302f2b
 # Id of the Trello board
-board: TIDTkrYS #FPJzDcok
+board: TIDTkrYS
 # Ids of the Trello Concepts & Archive Lists (to be excluded)
 # retrieve list ids using: https://api.trello.com/1/board/<boardId>/lists?key=<key>
 concepts: 644132de9936cb3fb4315cb8 #ignore the "Welcome" List 

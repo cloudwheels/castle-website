@@ -14,10 +14,14 @@ layout: default-app
                         let lists = transformTrelloData(data).lists;
                         //parse data to html tables & display
                         $('#list_project').append(listToTable('production', 'Project', lists.project));
+
+                        //ONLY SHOW PROJECT TYPE TASKS FOR NOW (OTHER TYPES NOT USED/ENABLED IN TRELLO)
+                        /*
                         $('#list_spec').append(listToTable('spec', 'Specification', lists.spec));
                         $('#list_service').append(listToTable('service', 'Service', lists.service));
                         $('#list_job').append(listToTable('job', 'Job', lists.job));
                         $('#list_qa').append(listToTable('qa', 'QA', lists.qa));
+                        */
                 }
                 catch (e) {
                         $('#loading-data').css("background-color", "red");
@@ -48,12 +52,13 @@ layout: default-app
 
 <div id="list_project"></div>
 
+<!--ONLY SHOW PROJECT TYPE TASKS FOR NOW (OTHER TYPES NOT USED/ENABLED IN TRELLO-->
+<!--
 <a id="specifications"></a>
 <h2>SPECIFICATIONS</h2>
 
 <div id="list_spec"></div>
 
-<!-- Add a design list-->
 <a id="design"></a>
 <h2>DESIGN</h2>
 
@@ -73,3 +78,4 @@ layout: default-app
 <h2>QA</h2>
 
 <div id="list_qa"></div>
+-->
